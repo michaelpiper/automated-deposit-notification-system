@@ -255,28 +255,24 @@ Schema<IWallet>({
 })
 
 ```
-Workers 
+More details about the application tree
+   - @api:
+    This folder represents the API microservice.
+    * loaders:  Contains files responsible for initializing and configuring the API microservice.
 
+    * notification: Contains files related to handling notifications, including controllers, DTOs (Data Transfer Objects), middleware, models, routes, services, and validation.
 
-more details about the application tree
+   - @idp:
+    This folder represents the Identity Provider microservice.
+    * loaders: Contains files responsible for initializing and configuring the Identity Provider microservice.
+    * user: Contains files related to user management, including controllers, DTOs, middleware, models, routes, services, and validation.
 
+   - @wallet: 
+    
+    This folder represents the Wallet microservice.
+    * loaders: Contains files responsible for initializing and configuring the Wallet microservice.
 
-## @api:
-   This folder represents the API microservice.
-   - loaders:  Contains files responsible for initializing and configuring the API microservice.
-   - notification: Contains files related to handling notifications, including controllers, DTOs (Data Transfer Objects), middleware, models, routes, services, and validation.
-
-### @idp: 
-   This folder represents the Identity Provider microservice.
-   - loaders: Contains files responsible for initializing and configuring the Identity Provider microservice.
-
-   - user: Contains files related to user management, including controllers, DTOs, middleware, models, routes, services, and validation.
-
-### @wallet: 
-   This folder represents the Wallet microservice.
-   - loaders: Contains files responsible for initializing and configuring the Wallet microservice.
-
-   - wallet: Contains files related to wallet management, including controllers, DTOs, middleware, models, routes, services, and validation.
+    * wallet: Contains files related to wallet management, including controllers, DTOs, middleware, models, routes, services, and validation.
 
    - api.server.ts, idp.server.ts, wallet.server.ts: These files serve as the entry points for their respective microservices, responsible for starting the servers.
 
