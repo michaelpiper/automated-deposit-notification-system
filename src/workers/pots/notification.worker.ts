@@ -39,9 +39,9 @@ export const QueueNotification = async (notificationId: ObjectId) => {
     .attempts(10)
     .backoff({ delay: 20000, type: 'fixed' })
     .removeOnComplete(true)
-  await saveJob(job)
   const service = new NotificationService()
   await service.updateStatus(notificationId, NotificationStatus.queue)
+  await saveJob(job)
   return job
 }
 export default {

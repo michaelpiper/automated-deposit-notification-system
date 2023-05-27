@@ -68,6 +68,8 @@ export class NotificationService {
         await this.sendMobileNotification(userInfo.deviceNotificationToken, message)
       } else if (notification.type === NotificationType.email.toString()) {
         await this.sendEmailNotification(userInfo.email, message)
+      } else if (notification.type === NotificationType.phoneNumber.toString()) {
+        await this.sendPhoneNotification(userInfo.phone, message)
       }
       await this.updateStatus(notification.id, NotificationStatus.completed)
       console.log('Notification sent. Insufficient funds.')
@@ -115,6 +117,12 @@ export class NotificationService {
     // Implementation using a mobile notification service
     // Replace with the actual implementation or use a third-party service
     console.log(`Sending mobile notification to device ${deviceNotificationToken}: ${message}`)
+  }
+
+  async sendPhoneNotification (phoneNumber: string, message: string) {
+    // Implementation using a mobile notification service
+    // Replace with the actual implementation or use a third-party service
+    console.log(`Sending phone notification to phoneNumber ${phoneNumber}: ${message}`)
   }
 
   // Sends an email notification to the user
