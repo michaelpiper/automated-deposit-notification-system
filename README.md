@@ -278,7 +278,8 @@ more details about the application tree
    - sdk: Contains SDK files for interacting with external services like API, IDP, queue, and wallet.
 
    - types.ts: Defines common types used throughout the system.
-    factories: Contains a file named generic.error.ts, which likely represents a factory for creating generic error objects.
+   
+   - factories: Contains a file named generic.error.ts, which likely represents a factory for creating generic error objects.
 
    - responses: Contains files related to handling different types of responses from the microservices.
 
