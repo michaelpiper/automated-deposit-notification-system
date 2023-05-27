@@ -26,7 +26,7 @@
     By following these steps, you will have the automated deposit notification system up and running using nodemon for development purposes and PM2 for process management. The first terminal is used to start the application, while the second terminal displays the application logs using PM2.
 
 
-# Application Director Tree
+# Application Directory Tree
 
 ```
 src
@@ -124,7 +124,7 @@ src
 ## Explanation
     An automated deposit notification system is a software system that is designed to automatically send notifications or alerts when deposits are made to a particular account. It utilizes various microservices and workers to handle different functionalities of the system.
 
-    In this directory tree, we have the following main components:
+###### In this directory tree, we have the following main components:
 
 ##### @api:
     This directory contains the microservice responsible for handling API-related functionality. It includes loaders for initializing the server and the server itself. Additionally, there are files related to notifications, such as controllers, DTOs (Data Transfer Objects), middleware, models, routes, services, and validation.
@@ -135,19 +135,19 @@ src
 ##### @wallet:
     This directory represents the microservice responsible for wallet-related functionality. It includes loaders and wallet-related functionality, such as controllers, DTOs, middleware, models, routes, services, and validation.
 
-    api.server.ts: This file is the entry point for the API microservice.
+  - api.server.ts: This file is the entry point for the API microservice.
 
-    common: This directory contains common functionality shared across different components of the system. It includes configurations, database connections, constants, DTOs for pagination, interfaces for notifications, pagination, responses, users, and wallets, modules for database adapters and storage, and SDKs for interacting with different services.
+    * [ ] common: This directory contains common functionality shared across different components of the system. It includes configurations, database connections, constants, DTOs for pagination, interfaces for notifications, pagination, responses, users, and wallets, modules for database adapters and storage, and SDKs for interacting with different services.
 
-    factories: This directory contains a file related to generic error handling.
+    * [ ] factories: This directory contains a file related to generic error handling.
 
-    idp.server.ts: This file is the entry point for the identity management microservice.
+    * [ ] idp.server.ts: This file is the entry point for the identity management microservice.
 
-    responses: This directory contains files related to different types of responses, including success artifacts, client errors (e.g., bad request, forbidden, not found, unauthorized, unprocessable entity), error handling, and server errors (e.g., internal server error).
+    * [ ] responses: This directory contains files related to different types of responses, including success artifacts, client errors (e.g., bad request, forbidden, not found, unauthorized, unprocessable entity), error handling, and server errors (e.g., internal server error).
 
-    utils: This directory contains utility files.
+    * [ ] utils: This directory contains utility files.
 
-    wallet.server.ts: This file is the entry point for the wallet microservice.
+    * [ ] wallet.server.ts: This file is the entry point for the wallet microservice.
 
 ##### Workers: 
     This directory contains files related to background workers. It includes an index file, a job-type file, a start file, and a worker wrapper. The pots directory within the workers directory contains a specific worker file (notification.worker.ts) related to sending deposit notifications.
@@ -172,6 +172,7 @@ Below are Database Schema, The provided code snippets define Mongoose schemas, w
     amount: A numeric field representing the amount associated with the notification.
     status: A string field representing the status of the notification. It has a predefined set of values defined by the NotificationStatus enum. The default value is set to NotificationStatus.pending.
     type: A string field representing the type of the notification. It has a predefined set of values defined by the NotificationType enum.
+
 ``` ts
 Schema<INotification>({
   reference: String,
@@ -192,13 +193,13 @@ Schema<INotification>({
 ```
 
 ### User Schema:
-    name: A string field representing the user's name.
-    username: A string field representing the user's username.
-    deviceNotificationToken: A string field representing the user's device notification token. It has a default value of null.
-    password: A string field representing the user's password.
-    email: A string field representing the user's email.
-    phone: A string field representing the user's phone.
-    type: A string field representing the type of user. It has a predefined set of values defined by the UserType enum.
+   - name: A string field representing the user's name.
+   - username: A string field representing the user's username.
+   - deviceNotificationToken: A string field representing the user's device notification  token. It has a default value of null.
+   - password: A string field representing the user's password.
+   - email: A string field representing the user's email.
+   - phone: A string field representing the user's phone.
+   - type: A string field representing the type of user. It has a predefined set of values defined by the UserType enum.
 ``` ts
 Schema<IProtectedUser>({
   name: { type: String, required: true },
@@ -216,10 +217,10 @@ Schema<IProtectedUser>({
 ```
 
 ### Wallet Schema:
-    userId: A field representing the user's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
-    value: A numeric field representing the value of the wallet.
-    groupId: A field representing the group's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
-    type: A string field representing the type of the wallet. It has a predefined set of values defined by the WalletType enum.
+   - userId: A field representing the user's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
+   - value: A numeric field representing the value of the wallet.
+   - groupId: A field representing the group's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
+   - type: A string field representing the type of the wallet. It has a predefined set of values defined by the WalletType enum.
 
 
 ``` ts
@@ -241,70 +242,66 @@ Workers
 more details about the application tree
 
 
-## @api: This folder represents the API microservice.
-### loaders: 
-    <p>
-    Contains files responsible for initializing and configuring the API microservice.
-    notification: Contains files related to handling notifications, including controllers, DTOs (Data Transfer Objects), middleware, models, routes, services, and validation.
-    <\p>
+## @api:
+   This folder represents the API microservice.
+   - loaders:  Contains files responsible for initializing and configuring the API microservice.
+   - notification: Contains files related to handling notifications, including controllers, DTOs (Data Transfer Objects), middleware, models, routes, services, and validation.
 
 ### @idp: 
-    This folder represents the Identity Provider microservice.
+   This folder represents the Identity Provider microservice.
+   - loaders: Contains files responsible for initializing and configuring the Identity Provider microservice.
 
-    loaders: Contains files responsible for initializing and configuring the Identity Provider microservice.
-
-    user: Contains files related to user management, including controllers, DTOs, middleware, models, routes, services, and validation.
+   - user: Contains files related to user management, including controllers, DTOs, middleware, models, routes, services, and validation.
 
 ### @wallet: 
-    This folder represents the Wallet microservice.
+   This folder represents the Wallet microservice.
+   - loaders: Contains files responsible for initializing and configuring the Wallet microservice.
 
-    loaders: Contains files responsible for initializing and configuring the Wallet microservice.
+   - wallet: Contains files related to wallet management, including controllers, DTOs, middleware, models, routes, services, and validation.
 
-    wallet: Contains files related to wallet management, including controllers, DTOs, middleware, models, routes, services, and validation.
+   - api.server.ts, idp.server.ts, wallet.server.ts: These files serve as the entry points for their respective microservices, responsible for starting the servers.
 
-    api.server.ts, idp.server.ts, wallet.server.ts: These files serve as the entry points for their respective microservices, responsible for starting the servers.
+   - common: This folder contains common components shared across microservices.
 
-    common: This folder contains common components shared across microservices.
+   - config: Contains configuration files.
 
-    config: Contains configuration files.
+   - connections: Contains files for establishing connections with external services such as mail, MongoDB, and Redis.
 
-    connections: Contains files for establishing connections with external services such as mail, MongoDB, and Redis.
+   - constants.ts: Defines common constants used across the system.
 
-    constants.ts: Defines common constants used across the system.
+   - dto: Contains Data Transfer Objects used across microservices.
 
-    dto: Contains Data Transfer Objects used across microservices.
+   - interfaces: Contains interfaces defining structures for notifications, pagination, responses, users, and wallets.
 
-    interfaces: Contains interfaces defining structures for notifications, pagination, responses, users, and wallets.
+   - modules: Contains modules such as adapters for Mongoose (MongoDB) and Redis, as well as a storage module.
 
-    modules: Contains modules such as adapters for Mongoose (MongoDB) and Redis, as well as a storage module.
+   - sdk: Contains SDK files for interacting with external services like API, IDP, queue, and wallet.
 
-    sdk: Contains SDK files for interacting with external services like API, IDP, queue, and wallet.
-
-    types.ts: Defines common types used throughout the system.
+   - types.ts: Defines common types used throughout the system.
     factories: Contains a file named generic.error.ts, which likely represents a factory for creating generic error objects.
 
-    responses: Contains files related to handling different types of responses from the microservices.
+   - responses: Contains files related to handling different types of responses from the microservices.
 
-    artifacts: Contains a success artifact file.
+   - artifacts: Contains a success artifact file.
 
-    clientErrors: Contains client error files such as bad request, forbidden, not found, unauthorized, and unprocessable entity.
+   - clientErrors: Contains client error files such as bad request, forbidden, not found, unauthorized, and unprocessable entity.
 
-    errorHandler.ts: Handles errors and maps them to appropriate responses.
+   - errorHandler.ts: Handles errors and maps them to appropriate responses.
 
-    serverErrors: Contains server error files, such as an internal server error.
+   - serverErrors: Contains server error files, such as an internal server error.
     utils: Contains utility functions that may be used throughout the system.
 
-    workers: Contains files related to background workers responsible for handling specific tasks.
+   - workers: Contains files related to background workers responsible for handling specific tasks.
 
-    index.ts: Entry point for the worker module.
+   - index.ts: Entry point for the worker module.
 
-    job-type.ts: Defines different job types that workers can handle.
+   - job-type.ts: Defines different job types that workers can handle.
 
-    pots: Contains a file named notification.worker.ts, which likely represents a worker responsible for handling deposit notification tasks.
+   - pots: Contains a file named notification.worker.ts, which likely represents a worker responsible for handling deposit notification tasks.
 
-    start.ts: Starts the worker.
+   - start.ts: Starts the worker.
 
-    worker.wrapper.ts: Wraps the worker logic.
+   - worker.wrapper.ts: Wraps the worker logic.
 
 
 
