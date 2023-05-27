@@ -197,6 +197,7 @@ Schema<INotification>({
     deviceNotificationToken: A string field representing the user's device notification token. It has a default value of null.
     password: A string field representing the user's password.
     email: A string field representing the user's email.
+    phone: A string field representing the user's phone.
     type: A string field representing the type of user. It has a predefined set of values defined by the UserType enum.
 ``` ts
 Schema<IProtectedUser>({
@@ -205,6 +206,7 @@ Schema<IProtectedUser>({
   deviceNotificationToken: { type: String, default: null },
   password: { type: String, required: true },
   email: { type: String, required: true },
+  phone: { type: String, required: true },
   type: {
     type: String,
     values: Object.values(UserType),
@@ -228,6 +230,7 @@ Schema<IWallet>({
   type: {
     type: String,
     values: Object.values(WalletType)
+    required: true
   }
 })
 

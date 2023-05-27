@@ -9,6 +9,7 @@ export const UserSchema = new Schema<IProtectedUser>({
   deviceNotificationToken: { type: String, default: null },
   password: { type: String, required: true },
   email: { type: String, required: true },
+  phone: { type: String, required: true },
   type: {
     type: String,
     values: Object.values(UserType),

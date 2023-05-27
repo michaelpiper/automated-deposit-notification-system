@@ -9,6 +9,7 @@ export interface IUser<T = string | ObjectId | null> {
   name: string
   username?: string
   email: string
+  phone: string
   deviceNotificationToken: string
   type: UserType
 }

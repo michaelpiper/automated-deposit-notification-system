@@ -19,7 +19,7 @@ export class UserRetrievalReqDto {
   }
 }
 export class UserCreateReqDto {
-  constructor (public name: string, public username: string, public type: UserType, public email: string, public password: string, public mobileNotificationToken: string) { }
+  constructor (public name: string, public username: string, public type: UserType, public email: string, public phone: string, public password: string, public mobileNotificationToken: string) { }
 
   static fromRepository (data: Record<string, any>) {
     const type = Object.values(UserType).find((n) => n.toString() === data.type) as UserType
@@ -28,6 +28,7 @@ export class UserCreateReqDto {
       data.username,
       type,
       data.email,
+      data.phone,
       bcrypt.hashSync(data.password, 10),
       data.mobileNotificationToken
     )
@@ -40,6 +41,7 @@ export class UserCreateReqDto {
       data.username,
       type,
       data.email,
+      data.phone,
       bcrypt.hashSync(data.password, 10),
       data.mobileNotificationToken
     )
@@ -72,13 +74,14 @@ export class UserListResDto<T> {
       username: item.username,
       deviceNotificationToken: item.deviceNotificationToken ?? null,
       email: item.email,
+      phone: item.phone,
       type: item.type
     }
   }
 }
 
 export class UserRetrievalResDto {
-  constructor (public id: string, public name: string, public username: string, public type: UserType, public email: string, public mobileNotificationToken: string) { }
+  constructor (public id: string, public name: string, public username: string, public type: UserType, public email: string, public phone: string, public mobileNotificationToken: string) { }
 
   static fromRepository (data: Record<string, any>) {
     const type = Object.values(UserType).find((n) => n.toString() === data.type) as UserType
@@ -88,6 +91,7 @@ export class UserRetrievalResDto {
       data.username,
       type,
       data.email,
+      data.phone,
       data.mobileNotificationToken
     )
   }
@@ -100,6 +104,7 @@ export class UserRetrievalResDto {
       data.username,
       type,
       data.email,
+      data.phone,
       data.mobileNotificationToken
     )
   }

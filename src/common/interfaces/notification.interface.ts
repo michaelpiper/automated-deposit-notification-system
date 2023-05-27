@@ -2,7 +2,8 @@ import { type ObjectId } from 'mongodb'
 
 export enum NotificationType {
   mobile = 'mobile',
-  email = 'email'
+  email = 'email',
+  phoneNumber = 'phoneNumber'
 }
 
 export enum NotificationStatus {
