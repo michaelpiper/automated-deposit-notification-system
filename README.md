@@ -258,21 +258,21 @@ Schema<IWallet>({
 More details about the application tree
    - @api:
     This folder represents the API microservice.
-    * loaders:  Contains files responsible for initializing and configuring the API microservice.
+    - loaders:  Contains files responsible for initializing and configuring the API microservice.
 
-    * notification: Contains files related to handling notifications, including controllers, DTOs (Data Transfer Objects), middleware, models, routes, services, and validation.
+    - notification: Contains files related to handling notifications, including controllers, DTOs (Data Transfer Objects), middleware, models, routes, services, and validation.
 
    - @idp:
     This folder represents the Identity Provider microservice.
-    * loaders: Contains files responsible for initializing and configuring the Identity Provider microservice.
-    * user: Contains files related to user management, including controllers, DTOs, middleware, models, routes, services, and validation.
+    - loaders: Contains files responsible for initializing and configuring the Identity Provider microservice.
+    - user: Contains files related to user management, including controllers, DTOs, middleware, models, routes, services, and validation.
 
    - @wallet: 
     
     This folder represents the Wallet microservice.
-    * loaders: Contains files responsible for initializing and configuring the Wallet microservice.
+    - loaders: Contains files responsible for initializing and configuring the Wallet microservice.
 
-    * wallet: Contains files related to wallet management, including controllers, DTOs, middleware, models, routes, services, and validation.
+    - wallet: Contains files related to wallet management, including controllers, DTOs, middleware, models, routes, services, and validation.
 
    - api.server.ts, idp.server.ts, wallet.server.ts: These files serve as the entry points for their respective microservices, responsible for starting the servers.
 
@@ -309,16 +309,15 @@ More details about the application tree
 
    - workers: Contains files related to background workers responsible for handling specific tasks.
 
-   - index.ts: Entry point for the worker module.
+    - index.ts: Entry point for the worker module.
 
-   - job-type.ts: Defines different job types that workers can handle.
+    - job-type.ts: Defines different job types that workers can handle.
 
-   - pots: Contains a file named notification.worker.ts, which likely represents a worker responsible for handling deposit notification tasks.
+    - pots: Contains a file named notification.worker.ts, which likely represents a worker responsible for handling deposit notification tasks.
 
-   - start.ts: Starts the worker.
+    - start.ts: Starts the worker.
 
-   - worker.wrapper.ts: Wraps the worker logic.
-
+    - worker.wrapper.ts: Wraps the worker logic.
 
 
 # TypeScript is a popular choice for projects like the automated deposit notification system due to several advantages it offers over plain JavaScript. Here are some reasons why TypeScript may have been used for this project:
