@@ -17,22 +17,24 @@ Tool and Technologies
 
 ##### Open the first terminal:
 
-    Run npm install or yarn install to install the required dependencies.
+    Run `npm install` or `yarn install` to install the required dependencies.
     Once the installation is complete,
 
 ##### Compile TypeScript to JavaScript:
 
     After the dependencies are installed, you need to compile the TypeScript code into JavaScript before running the application.
-    In the first terminal, run npm run build or yarn build. This command will compile the TypeScript files into JavaScript and generate the corresponding JavaScript files in the appropriate output directory.
+    In the first terminal, run `npm run build` or `yarn build`.
+    This command will compile the TypeScript files into JavaScript and generate the corresponding JavaScript files in the appropriate output directory.
 
 ##### Start the application: 
-    Execute yarn dev to start the application using nodemon. Nodemon is a development utility that automatically restarts the application whenever changes are detected in the source code. It helps in the development process by providing a more efficient workflow.
+    Execute  `npm run dev` or `yarn dev` to start the application using nodemon. 
+    Nodemon is a development utility that automatically restarts the application whenever changes are detected in the source code. It helps in the development process by providing a more efficient workflow.
 
-    Execute yarn start to start the application using PM2. PM2 will manage the application process, handle automatic restarts, and provide logging capabilities.
+    Execute or `npm start` or`yarn start` to start the application in production using PM2. PM2 will manage the application process, handle automatic restarts, and provide logging capabilities.
     The application should now be up and running, and you can monitor the logs in the second terminal using npm run pm2 log or yarn pm2 log.
 
 ##### Open the second terminal:
-    Run npm run pm2 log in the second terminal. This command will start the application using PM2. PM2 is a process manager for Node.js applications that provides features like automatic restarts, monitoring, and logging. The log argument ensures that the logs of the running application are displayed in the terminal.
+    Run `npm run pm log` or `yarn pm log` in the second terminal. This command will start the application using PM2. PM2 is a process manager for Node.js applications that provides features like automatic restarts, monitoring, and logging. The log argument ensures that the logs of the running application are displayed in the terminal.
     By following these steps, you will have the automated deposit notification system up and running using nodemon for development purposes and PM2 for process management. The first terminal is used to start the application, while the second terminal displays the application logs using PM2.
 
 
@@ -160,17 +162,24 @@ src
     * [ ] wallet.server.ts: This file is the entry point for the wallet microservice.
 
 ##### Workers: 
-    This directory contains files related to background workers. It includes an index file, a job-type file, a start file, and a worker wrapper. The pots directory within the workers directory contains a specific worker file (notification.worker.ts) related to sending deposit notifications.
+    This directory contains files related to background workers. It includes an index file, a job-type file, a start file, and a worker wrapper. 
+    The pots directory within the workers directory contains a specific worker file (notification.worker.ts) related to sending deposit notifications.
 
-    The system uses these components to automate the process of sending notifications to users whenever a deposit is made, using both email and mobile notifications. The microservices handle different aspects of the system, such as API handling, identity management, and wallet management. The workers handle background tasks, such as sending notifications, which are performed asynchronously to ensure efficient processing of deposit notifications.
+    The system uses these components to automate the process of sending notifications to users whenever a deposit is made, using both email and mobile notifications. 
+    The microservices handle different aspects of the system, such as API handling, identity management, and wallet management. 
+    The workers handle background tasks, such as sending notifications, which are performed asynchronously to ensure efficient processing of deposit notifications.
 
     The automated deposit notification system utilizes two databases:
 
 ##### Redis: 
-    Redis is used as a queue server through the implementation of Kue.js. Kue.js is a job queue library for Node.js that allows for the processing of asynchronous tasks in the background. Redis, in this context, serves as the storage engine for the job queue. The notification.worker.ts file likely contains code related to processing jobs from the queue, such as sending notifications or performing other tasks asynchronously. Redis provides fast and efficient data storage and retrieval, making it suitable for managing the job queue in the system.
+    Redis is used as a queue server through the implementation of Kue.js. Kue.js is a job queue library for Node.js that allows for the processing of asynchronous tasks in the background. Redis, in this context, serves as the storage engine for the job queue. 
+    The notification.worker.ts file likely contains code related to processing jobs from the queue, such as sending notifications or performing other tasks asynchronously. 
+    Redis provides fast and efficient data storage and retrieval, making it suitable for managing the job queue in the system.
 
 ##### MongoDB with Mongoose:
-    MongoDB is used as the main database, and Mongoose is employed as an Object Data Modeling (ODM) library for Node.js, providing a convenient interface for interacting with MongoDB. Mongoose allows you to define schemas (as shown in the previous explanation) to structure and enforce rules on the data stored in MongoDB. It provides a powerful set of features for querying, updating, and managing data in the database. In this system, Mongoose is likely used to store and retrieve various entities such as notifications, users, and wallets.
+    MongoDB is used as the main database, and Mongoose is employed as an Object Data Modeling (ODM) library for Node.js, providing a convenient interface for interacting with MongoDB.
+    Mongoose allows you to define schemas (as shown in the previous explanation) to structure and enforce rules on the data stored in MongoDB.
+    It provides a powerful set of features for querying, updating, and managing data in the database. In this system, Mongoose is likely used to store and retrieve various entities such as notifications, users, and wallets.
 
 By using Redis as the queue server and MongoDB with Mongoose as the database, the automated deposit notification system can efficiently manage and process notifications asynchronously, while also persisting relevant data in a structured manner.
 
