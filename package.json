@@ -6,6 +6,8 @@
     "directory": "/",
     "url": "https://github.com/michaelpiper/automated-deposit-notification-system.git"
   },
+  "author": "Michael Piper",
+  "license": "ISC",
   "scripts": {
     "lint": "eslint ./src",
     "build": "rm -rf ./application && tsc -p tsconfig.json",
@@ -28,7 +30,6 @@
   "engines": {
     "node": ">=16"
   },
-  "author": "Michael Piper",
   "main": "lib/index.js",
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
