@@ -2,6 +2,16 @@
 # <a href="https://documenter.getpostman.com/view/9260774/2s93m7WgkM">API DOCUMENTATION FOUND HERE</a>
 ###### https://documenter.getpostman.com/view/9260774/2s93m7WgkM
 
+
+Tool and Technologies
+=====================
+1. Mac Book M1 macOS 13.2.1 
+2. Express Server ^4.18.2
+3. NodeJS v18.12.1
+4. Typescript ^5.0.4
+6. Redis ^5.3.2
+7. PM2 ^5.3.0
+
 # INSTALLATION GUIDE
     To install and run the automated deposit notification system, follow these steps:
 
@@ -167,11 +177,11 @@ By using Redis as the queue server and MongoDB with Mongoose as the database, th
 Below are Database Schema, The provided code snippets define Mongoose schemas, which are used in conjunction with MongoDB to define the structure and behavior of documents in a collection. Each schema represents a specific entity or object in the system and defines the fields, data types, and validation rules for that entity.
 
 ### Notification Schema:
-    reference: A string field representing a reference associated with the notification.
-    userId: A field representing the user's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
-    amount: A numeric field representing the amount associated with the notification.
-    status: A string field representing the status of the notification. It has a predefined set of values defined by the NotificationStatus enum. The default value is set to NotificationStatus.pending.
-    type: A string field representing the type of the notification. It has a predefined set of values defined by the NotificationType enum.
+ - reference: A string field representing a reference associated with the notification.
+ - userId: A field representing the user's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
+ -   amount: A numeric field representing the amount associated with the notification.
+ -  status: A string field representing the status of the notification. It has a predefined set of values defined by the NotificationStatus enum. The default value is set to NotificationStatus.pending.
+ -  type: A string field representing the type of the notification. It has a predefined set of values defined by the NotificationType enum.
 
 ``` ts
 Schema<INotification>({
@@ -193,13 +203,13 @@ Schema<INotification>({
 ```
 
 ### User Schema:
-   - name: A string field representing the user's name.
-   - username: A string field representing the user's username.
-   - deviceNotificationToken: A string field representing the user's device notification  token. It has a default value of null.
-   - password: A string field representing the user's password.
-   - email: A string field representing the user's email.
-   - phone: A string field representing the user's phone.
-   - type: A string field representing the type of user. It has a predefined set of values defined by the UserType enum.
+ - name: A string field representing the user's name.
+ - username: A string field representing the user's username.
+ - deviceNotificationToken: A string field representing the user's device notification  token. It has a default value of null.
+ - password: A string field representing the user's password.
+ - email: A string field representing the user's email.
+ - phone: A string field representing the user's phone.
+ - type: A string field representing the type of user. It has a predefined set of values defined by the UserType enum.
 ``` ts
 Schema<IProtectedUser>({
   name: { type: String, required: true },
@@ -217,10 +227,10 @@ Schema<IProtectedUser>({
 ```
 
 ### Wallet Schema:
-   - userId: A field representing the user's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
-   - value: A numeric field representing the value of the wallet.
-   - groupId: A field representing the group's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
-   - type: A string field representing the type of the wallet. It has a predefined set of values defined by the WalletType enum.
+ - userId: A field representing the user's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
+ - value: A numeric field representing the value of the wallet.
+ - groupId: A field representing the group's unique identifier. It uses Schema.Types.ObjectId, which references the ObjectId type from Mongoose.
+ - type: A string field representing the type of the wallet. It has a predefined set of values defined by the WalletType enum.
 
 
 ``` ts
@@ -278,7 +288,7 @@ more details about the application tree
    - sdk: Contains SDK files for interacting with external services like API, IDP, queue, and wallet.
 
    - types.ts: Defines common types used throughout the system.
-   
+
    - factories: Contains a file named generic.error.ts, which likely represents a factory for creating generic error objects.
 
    - responses: Contains files related to handling different types of responses from the microservices.
