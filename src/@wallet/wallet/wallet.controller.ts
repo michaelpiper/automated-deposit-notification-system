@@ -1,7 +1,7 @@
 import { type Response, type NextFunction, type Request } from 'express'
 import { WalletService } from './wallet.service'
 import SuccessArtifact from '../../responses/artifacts/success.artifact'
-import { WalletBalanceRetrievalResDto, WalletRetrievalReqDto, WalletRetrievalResDto } from './wallet.dto'
+import { WalletBalanceRetrievalResDto, WalletFundingReqDto, WalletRetrievalReqDto, WalletRetrievalResDto } from './wallet.dto'
 import NotFound from '../../responses/clientErrors/notFound.clientError'
 import { ErrorCode, ErrorDescription } from '../../common/constants'
 
@@ -13,6 +13,20 @@ export class WalletController {
       const wallet = await service.findOneById(payload.id)
       if (wallet === null) {
         throw new NotFound(ErrorCode.NOT_FOUND, ErrorDescription.NOT_FOUND, `Wallet not found ${payload.id}`)
+      }
+      res.status(200).json(new SuccessArtifact(WalletRetrievalResDto.fromRepository(wallet).data).toJson)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async fundWallet (req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const payload = WalletFundingReqDto.fromWithWalletPayload(req.params, req.body)
+      const service = new WalletService()
+      const wallet = await service.fundWallet(payload)
+      if (wallet === null) {
+        throw new NotFound(ErrorCode.NOT_FOUND, ErrorDescription.NOT_FOUND, `Wallet not found ${payload.walletId}`)
       }
       res.status(200).json(new SuccessArtifact(WalletRetrievalResDto.fromRepository(wallet).data).toJson)
     } catch (error) {

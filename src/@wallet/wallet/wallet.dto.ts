@@ -1,5 +1,57 @@
+import { TransactionType } from '../../common/interfaces/transaction.interface'
 import { type IWallet, WalletType } from './wallet.model'
 import { type ObjectId } from 'mongodb'
+
+export class WalletFundingReqDto {
+  constructor (
+    public txRef: string,
+    public userId: string,
+    public walletId: string,
+    public amount: number,
+    public type: TransactionType.cr = TransactionType.cr
+  ) { }
+
+  static fromRepository (data: Record<string, any>) {
+    return new this(
+      data.txRef,
+      data.userId,
+      data.walletId,
+      data.amount,
+      data.type
+    )
+  }
+
+  static fromPayload (data: Record<string, any>) {
+    return new this(
+      data.txRef,
+      data.userId,
+      data.walletId,
+      data.amount,
+      data.type
+    )
+  }
+
+  static fromWithUserWalletPayload (data: Record<string, any>) {
+    return new this(
+      data.txRef,
+      data.userId,
+      data.walletId,
+      data.amount,
+      data.type
+    )
+  }
+
+  static fromWithWalletPayload (params: Record<string, any>, data: Record<string, any>) {
+    return new this(
+      data.txRef,
+      params.userId,
+      data.walletId,
+      data.amount,
+      data.type
+    )
+  }
+}
+
 export class WalletRetrievalReqDto {
   constructor (public id: string) { }
 

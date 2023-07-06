@@ -33,15 +33,15 @@ export const EmailConfig = Object.freeze({
     port: env.int('MAIL_PORT', null),
     secure: env.bool('MAIL_SECURE', true),
     auth: {
-      type: 'login',
+      type: env<string>('MAIL_AUTH_TYPE', null) !== null ? env<string>('MAIL_AUTH_TYPE') as any : undefined,
       user: env<string>('MAIL_USER_NAME', null),
       pass: env<string>('MAIL_USER_PASS', null)
     },
     tls: {
-      rejectUnauthorized: env.bool('MAIL_REJECT_UNAUTHORIZED', true)
+      rejectUnauthorized: env.bool('MAIL_REJECT_UNAUTHORIZED', null) !== null ? env.bool('MAIL_REJECT_UNAUTHORIZED', null) : undefined
     },
-    requireTLS: env.bool('MAIL_REQUIRE_TLS', true),
-    connectionTimeout: env.int('MAIL_CONNECTION_TIMEOUT', 1),
+    requireTLS: env.bool('MAIL_REQUIRE_TLS', null) !== null ? env.bool('MAIL_REQUIRE_TLS', null) : undefined,
+    connectionTimeout: env.int('MAIL_CONNECTION_TIMEOUT', null) !== null ? env.int('MAIL_CONNECTION_TIMEOUT', null) : undefined,
     replyTo: env<string>('MAIL_REPLY_TO', null),
     from: env<string>('MAIL_FROM', null)
   } satisfies SMTPTransport.Options,

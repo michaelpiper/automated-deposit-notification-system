@@ -11,6 +11,7 @@ import { ObjectId } from 'mongodb'
 import { isValidObjectId } from 'mongoose'
 import InternalServerError from '../../responses/serverErrors/internalServerError.serverError'
 import { mailer } from '../../common/connections/mail'
+import { EmailConfig } from '../../common/config'
 // import { type AxiosError } from 'axios'
 export class NotificationService {
   async create (userId: string, amount: number, notificationType: NotificationType, reference: string) {
@@ -64,11 +65,11 @@ export class NotificationService {
     if (userInfo != null && walletBalance < notification.amount) {
       const message = `Dear ${userInfo.name}, your automated deposit of ${notification.amount as unknown as string} failed due to insufficient funds in your wallet. Please add funds to your wallet to resolve the issue.`
       console.log(notification.type)
-      if (notification.type === NotificationType.mobile.toString()) {
+      if (notification.type === NotificationType.mobile) {
         await this.sendMobileNotification(userInfo.deviceNotificationToken, message)
-      } else if (notification.type === NotificationType.email.toString()) {
+      } else if (notification.type === NotificationType.email) {
         await this.sendEmailNotification(userInfo.email, message)
-      } else if (notification.type === NotificationType.phoneNumber.toString()) {
+      } else if (notification.type === NotificationType.phoneNumber) {
         await this.sendPhoneNotification(userInfo.phone, message)
       }
       await this.updateStatus(notification.id, NotificationStatus.completed)
@@ -128,10 +129,17 @@ export class NotificationService {
   // Sends an email notification to the user
   async sendEmailNotification (email: string, message: string) {
     // Implementation using an email service
-    await mailer.sendMail({
-      to: email,
-      html: message
-    })
-    console.log(`Sending email notification to email ${email}: ${message}`)
+    try {
+      const mail = await mailer.sendMail({
+        from: EmailConfig.options.from,
+        to: email,
+        subject: 'Automated Deposit Notification System',
+        html: message
+      })
+
+      console.log(`Sending email notification to email ${email}: ${message} <messageId:${mail.messageId}>`)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

@@ -1,16 +1,16 @@
 import { type Response, type NextFunction, type Request } from 'express'
-import { handleFundUserWallet, handleRetrieveUserWallet, handleRetrieveWallet } from './wallet.validation'
+import { handleRetrieveUserWalletTransaction, handleRetrieveUserTransaction } from './transaction.validation'
 import { ValidationError } from 'joi'
 import { ErrorCode, ErrorDescription } from '../../common/constants'
 import UnprocessableEntity from '../../responses/clientErrors/unprocessableEntity.clientError'
 import BadRequest from '../../responses/clientErrors/badRequest.clientError'
 import { UserService } from '../../@idp/user/user.service'
 import NotFound from '../../responses/clientErrors/notFound.clientError'
-import { WalletService } from './wallet.service'
-export class WalletMiddleware {
-  async handleRetrieveWalletValidation (req: Request, res: Response, next: NextFunction): Promise<void> {
+import { TransactionService } from './transaction.service'
+export class TransactionMiddleware {
+  async handleRetrieveUserTransactionValidation (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      req.params = await handleRetrieveWallet.validateAsync(req.params)
+      req.params = await handleRetrieveUserTransaction.validateAsync(req.params)
       next()
     } catch (error: any) {
       if (error instanceof ValidationError) {
@@ -20,22 +20,9 @@ export class WalletMiddleware {
     }
   }
 
-  async handleRetrieveUserWalletValidation (req: Request, res: Response, next: NextFunction): Promise<void> {
+  async handleRetrieveUserWalletTransactionValidation (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      req.params = await handleRetrieveUserWallet.validateAsync(req.params)
-      next()
-    } catch (error: any) {
-      if (error instanceof ValidationError) {
-        next(new UnprocessableEntity(ErrorCode.INVALID_INPUT, ErrorDescription.INVALID_INPUT, error.details).withRootError(error))
-      }
-      next(new BadRequest(ErrorCode.UNEXPECTED_ERROR, ErrorDescription.UNEXPECTED_ERROR, 'An unexpected events occurs please contact site admin').withRootError(error))
-    }
-  }
-
-  async handleFundUserWalletValidation (req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-      req.params = await handleRetrieveUserWallet.validateAsync(req.params)
-      req.body = await handleFundUserWallet.validateAsync(req.body)
+      req.params = await handleRetrieveUserWalletTransaction.validateAsync(req.params)
       next()
     } catch (error: any) {
       if (error instanceof ValidationError) {
@@ -61,7 +48,7 @@ export class WalletMiddleware {
 
   async walletExist (req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const walletService = new WalletService()
+      const walletService = new TransactionService()
       res.locals.wallet = await walletService.findOneById(req.params.walletId)
       if (res.locals.wallet === null) {
         throw new NotFound(ErrorCode.INVALID_INPUT, ErrorDescription.INVALID_INPUT, 'The walletId doesn\'t exit')
