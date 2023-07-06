@@ -129,17 +129,13 @@ export class NotificationService {
   // Sends an email notification to the user
   async sendEmailNotification (email: string, message: string) {
     // Implementation using an email service
-    try {
-      const mail = await mailer.sendMail({
-        from: EmailConfig.options.from,
-        to: email,
-        subject: 'Automated Deposit Notification System',
-        html: message
-      })
+    const mail = await mailer.sendMail({
+      from: EmailConfig.options.from,
+      to: email,
+      subject: 'Automated Deposit Notification System',
+      html: message
+    })
 
-      console.log(`Sending email notification to email ${email}: ${message} <messageId:${mail.messageId}>`)
-    } catch (error) {
-      console.log(error)
-    }
+    console.log(`Sending email notification to email ${email}: ${message} <messageId:${mail.messageId}>`)
   }
 }
